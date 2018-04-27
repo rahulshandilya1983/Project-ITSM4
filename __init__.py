@@ -41,20 +41,10 @@ class ItsmUserSkill(MycroftSkill):
             require("ItsmUserKeyword").build()
         self.register_intent(itsm_user_intent, self.handle_itsm_user_intent)
 
-        #how_are_you_intent = IntentBuilder("HowAreYouIntent"). \
-        #    require("HowAreYouKeyword").build()
-        #self.register_intent(how_are_you_intent,
-        #                     self.handle_how_are_you_intent)
-
-        #hello_world_intent = IntentBuilder("HelloWorldIntent"). \
-        #    require("HelloWorldKeyword").build()
-        #self.register_intent(hello_world_intent,
-        #                     self.handle_hello_world_intent)
-
     def handle_itsm_user_intent(self, message):
-        url = 'https://dev22921.service-now.com/api/now/table/sys_user/66e1f49edb5d13006b72712ebf9619c2?sysparm_display_value=true&sysparm_exclude_reference_link=true&sysparm_fields=name'
+        url = 'https://dev22921.service-now.com/api/now/table/incident?sysparm_query=assigned_to%3D66e1f49edb5d13006b72712ebf9619c2%5Eactive%3Dtrue'
         user = '531834'
-        pwd = 'Anita!2345'
+        pwd = 'Welcome!2345'
         headers = {"Content-Type":"application/json","Accept":"application/json"}
         # Do the HTTP request
         response = requests.get(url, auth=(user, pwd), headers=headers )
@@ -64,8 +54,9 @@ class ItsmUserSkill(MycroftSkill):
             exit()
         # Decode the JSON response into a dictionary and use the data
         data = response.json()
-        name = data['result']['name']
-        self.speak("Your name in your ServiceNow Instance is {}".format(name))
+        number = len(data['result'])
+        self.speak("You have a total of {}".format(number)+"Incidents assigned")
+        self.speak("Please type the Incident number to get detailed information")
         
 
     def stop(self):
