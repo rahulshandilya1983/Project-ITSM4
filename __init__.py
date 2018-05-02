@@ -39,7 +39,7 @@ class ItsmUserSkill4(MycroftSkill):
         
         
         itsm_user_intent4 = IntentBuilder("itsmuserintent4"). \
-            require("ItsmUserKeyword").build()
+            require("ItsmUserKeyword4").build()
         self.register_intent(itsm_user_intent4, self.handle_itsm_user_intent4)
 
     def handle_itsm_user_intent4(self, message):
@@ -58,14 +58,12 @@ class ItsmUserSkill4(MycroftSkill):
         length = len(data['result'])
         x = 0
         r = data['result']
-        detail = "Hello. WHo are you?"
-#        while x<length:
-#            detail += "Your Incident {}".format(x+1) +" is "+ r[x]['number'] + " having caller as "+r[x]['caller_id']+ " with Short Description "+ r[x]['short_description'] + " and priority as "+r[x]['priority']+"."
-#            x += 1
-        self.speak(detail)
-#        self.speak("You have a total of {}".format(length)+"Incidents assigned")
-#        self.speak("Please type the Incident number to get detailed information")
-        
+        detail = ""
+        while x<length:
+            detail += "Your Incident {}".format(x+1) +" is "+ r[x]['number'] + " having caller as "+r[x]['caller_id']+ " with Short Description "+ r[x]['short_description'] + " and priority as "+r[x]['priority']+"."
+            x += 1
+        self.speak("Hello")
+        self.speak(detail)        
 
     def stop(self):
         pass
