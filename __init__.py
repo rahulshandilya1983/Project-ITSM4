@@ -37,11 +37,11 @@ class ItsmUserSkill(MycroftSkill):
         self.load_data_files(dirname(__file__))
         
         
-        itsm_user_intent = IntentBuilder("itsmuserintent"). \
+        itsm_user_intent4 = IntentBuilder("itsmuserintent4"). \
             require("ItsmUserKeyword").build()
-        self.register_intent(itsm_user_intent, self.handle_itsm_user_intent)
+        self.register_intent(itsm_user_intent4, self.handle_itsm_user_intent4)
 
-    def handle_itsm_user_intent(self, message):
+    def handle_itsm_user_intent4(self, message):
         url = 'https://dev22921.service-now.com/api/now/table/incident?sysparm_query=assigned_to%3D66e1f49edb5d13006b72712ebf9619c2&sysparm_display_value=true&sysparm_exclude_reference_link=true&sysparm_fields=number%2Ccaller_id%2Cshort_description%2Cpriority'
         user = '531834'
         pwd = 'Welcome!2345'
