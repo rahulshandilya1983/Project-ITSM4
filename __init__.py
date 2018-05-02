@@ -42,7 +42,7 @@ class ItsmUserSkill(MycroftSkill):
         self.register_intent(itsm_user_intent, self.handle_itsm_user_intent)
 
     def handle_itsm_user_intent(self, message):
-        url = 'https://dev22921.service-now.com/api/now/table/incident?sysparm_query=assigned_to%3D66e1f49edb5d13006b72712ebf9619c2%5Eactive%3Dtrue'
+        url = 'https://dev22921.service-now.com/api/now/table/incident?sysparm_query=assigned_to%3D66e1f49edb5d13006b72712ebf9619c2&sysparm_display_value=true&sysparm_exclude_reference_link=true&sysparm_fields=number%2Ccaller_id%2Cshort_description%2Cpriority'
         user = '531834'
         pwd = 'Welcome!2345'
         headers = {"Content-Type":"application/json","Accept":"application/json"}
@@ -54,9 +54,15 @@ class ItsmUserSkill(MycroftSkill):
             exit()
         # Decode the JSON response into a dictionary and use the data
         data = response.json()
-        number = len(data['result'])
-        self.speak("You have a total of {}".format(number)+"Incidents assigned")
-        self.speak("Please type the Incident number to get detailed information")
+        length = len(data['result'])
+        x = 0
+        r = data['result']
+        detail = ""
+        while x<len(data["result"]):
+            self.speak("Your Incident {}".format(x+1) +" is "+ r[x]['number'] + " having caller as "+r[x]['caller_id']+ " with Short Description "+ r[x]['short_description'] + " and priority as "+r[x]['priority']+ "\n")
+            x += 1
+#        self.speak("You have a total of {}".format(length)+"Incidents assigned")
+#        self.speak("Please type the Incident number to get detailed information")
         
 
     def stop(self):

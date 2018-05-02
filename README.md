@@ -2,4 +2,4 @@
 
 ## Usage:
 This skill will demo ITSM API Consumption
-*This skill provide User with the Incident count that the User has in ServiceNow Instance
+*This skill provide User with the Incident details.
