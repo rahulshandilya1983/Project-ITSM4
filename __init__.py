@@ -14,6 +14,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Mycroft Core.  If not, see <http://www.gnu.org/licenses/>.
+#This code is written by Rahul Kumar Shandilya
 from os.path import dirname
 
 from adapt.intent import IntentBuilder
@@ -29,9 +30,9 @@ __author__ = 'Rahul Kumar Shandilya'
 LOGGER = getLogger(__name__)
 
 
-class ItsmUserSkill(MycroftSkill):
+class ItsmUserSkill4(MycroftSkill):
     def __init__(self):
-        super(ItsmUserSkill, self).__init__(name="ItsmUserSkill")
+        super(ItsmUserSkill4, self).__init__(name="ItsmUserSkill4")
 
     def initialize(self):
         self.load_data_files(dirname(__file__))
@@ -58,9 +59,10 @@ class ItsmUserSkill(MycroftSkill):
         x = 0
         r = data['result']
         detail = ""
-        while x<len(data["result"]):
-            self.speak("Your Incident {}".format(x+1) +" is "+ r[x]['number'] + " having caller as "+r[x]['caller_id']+ " with Short Description "+ r[x]['short_description'] + " and priority as "+r[x]['priority']+ "\n")
+        while x<length:
+            detail += "Your Incident {}".format(x+1) +" is "+ r[x]['number'] + " having caller as "+r[x]['caller_id']+ " with Short Description "+ r[x]['short_description'] + " and priority as "+r[x]['priority']+"."
             x += 1
+        self.speak(detail)
 #        self.speak("You have a total of {}".format(length)+"Incidents assigned")
 #        self.speak("Please type the Incident number to get detailed information")
         
@@ -70,4 +72,4 @@ class ItsmUserSkill(MycroftSkill):
 
 
 def create_skill():
-    return ItsmUserSkill()
+    return ItsmUserSkill4()
