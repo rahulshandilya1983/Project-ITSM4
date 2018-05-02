@@ -58,10 +58,10 @@ class ItsmUserSkill4(MycroftSkill):
         length = len(data['result'])
         x = 0
         r = data['result']
-        detail = ""
-        while x<length:
-            detail += "Your Incident {}".format(x+1) +" is "+ r[x]['number'] + " having caller as "+r[x]['caller_id']+ " with Short Description "+ r[x]['short_description'] + " and priority as "+r[x]['priority']+"."
-            x += 1
+        detail = "Hello. WHo are you?"
+#        while x<length:
+#            detail += "Your Incident {}".format(x+1) +" is "+ r[x]['number'] + " having caller as "+r[x]['caller_id']+ " with Short Description "+ r[x]['short_description'] + " and priority as "+r[x]['priority']+"."
+#            x += 1
         self.speak(detail)
 #        self.speak("You have a total of {}".format(length)+"Incidents assigned")
 #        self.speak("Please type the Incident number to get detailed information")
